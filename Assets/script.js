@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     localStorage.setItem(time, text);
   });
-  $("#hour9").val(localStorage.getItem("hour9"));
+  $("#hour9 .description").val(localStorage.getItem("hour9"));
   $("#hour10").val(localStorage.getItem("hour10"));
   $("#hour11").val(localStorage.getItem("hour11"));
   $("#hour12").val(localStorage.getItem("hour12"));
