@@ -3,42 +3,42 @@ $(document).ready(function () {
 
   $(".saveBtn").on("click", function () {
     console.log(this);
-    var text = $(this).siblings(".description").val();
-    var time = $(this).parent().attr("id");
+    var textcontent = $(this).siblings(".description").val();
+    var timeid = $(this).parent().attr("id");
 
-    localStorage.setItem(time, text);
+    localStorage.setItem(timeid, text);
   });
-  $("#hour9 .description").val(localStorage.getItem("hour9"));
-  $("#hour10").val(localStorage.getItem("hour10"));
-  $("#hour11").val(localStorage.getItem("hour11"));
-  $("#hour12").val(localStorage.getItem("hour12"));
-  $("#hour13").val(localStorage.getItem("hour13"));
-  $("#hour14").val(localStorage.getItem("hour14"));
-  $("#hour15").val(localStorage.getItem("hour15"));
-  $("#hour16").val(localStorage.getItem("hour16"));
-  $("#hour17").val(localStorage.getItem("hour17"));
+  $("#9am").val(localStorage.getItem("9am"));
+  $("#10am").val(localStorage.getItem("10am"));
+  $("#11am").val(localStorage.getItem("11am"));
+  $("#12pm").val(localStorage.getItem("12pm"));
+  $("#1pm").val(localStorage.getItem("1pm"));
+  $("#2pm").val(localStorage.getItem("2pm"));
+  $("#3pm").val(localStorage.getItem("3pm"));
+  $("#4pm").val(localStorage.getItem("4pm"));
+  $("#5pm").val(localStorage.getItem("5pm"));
 
-  function hourTracker() {
-    var currentHour = moment().hour();
+  function beforeCurrentAfter() {
+    var localHour = moment().hour();
 
-    $(".time-block").each(function () {
-      var blockHour = parseInt($(this).attr("id").split("hour")[1]);
-      console.log(blockHour, currentHour);
+    $(".timeid-block").each(function () {
+      var plannerHour = parseInt($(this).attr("id").split("hour")[1]);
+      console.log(plannerHour, localHour);
 
-      if (blockHour < currentHour) {
+      if (plannerHour < localHour) {
         $(this).addClass("past");
         $(this).removeClass("future");
         $(this).removeClass("present");
-      } else if (blockHour === currentHour) {
-        $(this).removeClass("past");
+      } else if (plannerHour === localHour) {
         $(this).addClass("present");
+        $(this).removeClass("past");
         $(this).removeClass("future");
       } else {
+        $(this).addClass("future");
         $(this).removeClass("present");
         $(this).removeClass("past");
-        $(this).addClass("future");
       }
     });
   }
-  hourTracker();
+  beforeCurrentAfter();
 });
